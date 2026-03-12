@@ -9,7 +9,7 @@ class Solution {
             int x = (sum + arr[i] + 2)%2;
             if(x==0){
                 if(i+k>n) return -1;
-                sum += 1;
+                sum++;
                 if(i+k<n) diff[i+k] -= 1;
                 ops++;
             }
