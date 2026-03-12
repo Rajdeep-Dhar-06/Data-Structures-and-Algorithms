@@ -10,8 +10,8 @@ class Solution {
             if(x==0){
                 if(i+k>n) return -1;
                 sum++;
-                diff[i+k] -= 1;
                 ops++;
+                diff[i+k]--;
             }
         }
         return ops;
