@@ -5,7 +5,6 @@ public:
     int n, m;
     int dx[4] = {0, 1, 0, -1};
     int dy[4] = {1, 0, -1, 0};
-    bool isValid(int x, int y) { return (x >= 0 && x < n && y >= 0 && y < m); }
     int bfs(int i, int j, vector<vector<int>>& g) {
         deque<pair<int, pair<int, int>>> dq;
         dist[i][j] = g[i][j]==0 ? 0 : 1;
@@ -23,7 +22,7 @@ public:
                 int nx = x + dx[i];
                 int ny = y + dy[i];
 
-                if (isValid(nx, ny) && !vis[nx][ny]) {
+                if ((nx >= 0 && nx < n && ny >= 0 && ny < m) && !vis[nx][ny]) {
                     if (g[nx][ny] == 1) {
                         dist[nx][ny] = min(dist[nx][ny], 1 + d);
                         dq.push_back({dist[nx][ny], {nx, ny}});
