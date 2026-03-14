@@ -3,8 +3,6 @@ public:
     long long dp[16][2][11][9 * 15][4][2][2];
     string a, b;
     bool check(int n) {
-        if (n < 10)
-            return true;
         int x = n;
         int next1 = 1e9;
         int next2 = -1;
