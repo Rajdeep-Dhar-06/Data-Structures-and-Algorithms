@@ -1,33 +1,30 @@
 class Solution {
 public:
-    // dp[i][j] = # of elements from [i...n] such that XOR is j
-    vector<int> nums;
-    int n, t;
-    vector<vector<int>> dp;
-    int rec(int i, int j) {
-        // p
-        // bc
-        if (i == n) {
-            if (j == t)
-                return 0;
-            else
-                return -1e6;
+    int minRemovals(vector<int>& nums, int target) {
+        int n = nums.size();
+        int LIM = 1 << 14;
+
+        vector<vector<int>> dp(n + 1, vector<int>(LIM, -1e9));
+
+        // base case
+        for (int j = 0; j < LIM; j++) {
+            if (j == target) dp[n][j] = 0;
         }
-        // cc
-        if (dp[i][j] != -1e9)
-            return dp[i][j];
-        // t
-        int ans = max(rec(i + 1, j), 1 + rec(i + 1, j ^ nums[i]));
-        // sr
-        return dp[i][j] = ans;
-    }
-    int minRemovals(vector<int>& arr, int target) {
-        nums = arr;
-        t = target;
-        n = nums.size();
-        int lim = (1 << 15);
-        dp.resize(n, vector<int>(lim, -1e9));
-        int ans = rec(0, 0);
-        return ans < 0 ? -1 : (n - ans);
+
+        // fill bottom-up
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j < LIM; j++) {
+                // skip
+                int ans = dp[i + 1][j];
+
+                // take
+                int take = 1 + dp[i + 1][j ^ nums[i]];
+
+                dp[i][j] = max(ans, take);
+            }
+        }
+
+        int ans = dp[0][0];
+        return (ans < 0 ? -1 : n - ans);
     }
 };
