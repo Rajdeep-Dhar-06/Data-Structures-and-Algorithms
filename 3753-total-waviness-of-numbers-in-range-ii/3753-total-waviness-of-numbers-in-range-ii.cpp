@@ -1,7 +1,7 @@
 class Solution {
 public:
     string a, b;
-    long long dp[17][2][2][11][11][2][15];
+    long long dp[16][2][2][11][11][2][15];
 
     long long rec(int i, int tlo, int thi, int l, int sl, int z, int sum) {
         if (i == b.size()) {
@@ -50,3 +50,7 @@ public:
         return rec(0, 1, 1, 10, 10, 1, 0);
     }
 };
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/leethub-v4/bcilpkkbokcopmabingnndookdogmbna
