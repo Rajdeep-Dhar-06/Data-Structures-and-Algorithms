@@ -24,7 +24,7 @@ public:
             
             aft *= 10;
             res += to_string(aft / d);
-            aft %= den;
+            aft %= d;
         }
 
         return ans + res;
